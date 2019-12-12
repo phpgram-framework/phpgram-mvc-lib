@@ -22,11 +22,12 @@ class DB extends Factories
 	private static $_instance=null;
 
 	/**
+	 * @param bool $new
 	 * @return DBInterface
 	 */
-	public static function db()
+	public static function db(bool $new = false)
 	{
-		if(!isset(self::$_instance)){
+		if(!isset(self::$_instance) || $new){
 			self::$_instance = new StdDB(
 				getenv("DB_HOST"),
 				getenv("DB_NAME"),
