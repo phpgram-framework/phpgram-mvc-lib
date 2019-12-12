@@ -13,6 +13,7 @@
 
 namespace Gram\Mvc\Lib\Factories;
 
+use Gram\Project\Lib\Session\RequestSession\RequestSession;
 use Gram\Project\Lib\Session\SessionInterface;
 use Gram\Project\Lib\Session\StdPhpSession;
 use Psr\Http\Message\ServerRequestInterface;
@@ -46,6 +47,6 @@ class SessionFactory extends Factories
 	 */
 	public static function getRequestSession(ServerRequestInterface $request)
 	{
-
+		return $request->getAttribute(RequestSession::class);
 	}
 }
