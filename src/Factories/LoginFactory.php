@@ -17,6 +17,7 @@ use Gram\Project\Lib\Authenticate\Login;
 use Gram\Project\Lib\Authenticate\LoginCookie;
 use Gram\Project\Lib\Cookie\Psr7CookieInterface;
 use Gram\Project\Lib\Cookie\Psr7SimpleCookie;
+use Gram\Project\Lib\Session\SessionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -28,36 +29,34 @@ use Psr\Http\Message\ServerRequestInterface;
  */
 class LoginFactory extends Factories
 {
-	/** @var Login */
-	private static $_instance=null;
-
 	/**
+	 * @param SessionInterface|null $session
 	 * @return Login
 	 */
-	public static function login()
+	public static function login(SessionInterface $session = null)
 	{
-		if(!isset(self::$_instance)){
-			self::$_instance = new Login(SessionFactory::getSession(),UserFactory::getUser());
-		}
+		$session = $session ?? SessionFactory::getSession();
 
-		return self::$_instance;
+		return new Login($session,UserFactory::getUser());
 	}
 
 	/**
 	 * @param ServerRequestInterface $request
 	 * @param ResponseInterface|null $response
+	 * @param SessionInterface|null $session
 	 * @param Psr7CookieInterface|null $cookie
-	 * @return Login|LoginCookie
+	 * @return LoginCookie
 	 */
 	public static function loginCookie(
 		ServerRequestInterface $request,
 		ResponseInterface $response=null,
+		SessionInterface $session = null,
 		Psr7CookieInterface $cookie=null
 	){
-		if($cookie===null){
-			$cookie = new Psr7SimpleCookie();
-		}
+		$cookie = $cookie ?? new Psr7SimpleCookie();
 
-		return new LoginCookie(SessionFactory::getSession(),UserFactory::getUser(),$request,$response,$cookie);
+		$session = $session ?? SessionFactory::getSession();
+
+		return new LoginCookie($session,UserFactory::getUser(),$request,$response,$cookie);
 	}
 }
