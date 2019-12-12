@@ -13,11 +13,11 @@
 
 namespace Gram\Mvc\Lib\Controller;
 
+use Gram\Mvc\Lib\Factories\SessionFactory;
 use Gram\Mvc\Lib\Factories\ViewFactory;
 use Gram\Middleware\Classes\ClassInterface;
 use Gram\Middleware\Classes\ClassTrait;
 use Gram\Project\Lib\Input;
-use Gram\Project\Lib\View\View;
 
 abstract class BaseController implements ClassInterface
 {
@@ -37,7 +37,12 @@ abstract class BaseController implements ClassInterface
 	protected function initView()
 	{
 		if($this->view=== null){
-			$this->view = new View(ViewFactory::getViewPath());
+			$this->view = ViewFactory::getView();
 		}
+	}
+
+	protected function getRequestSession()
+	{
+		return SessionFactory::getRequestSession($this->request);
 	}
 }
