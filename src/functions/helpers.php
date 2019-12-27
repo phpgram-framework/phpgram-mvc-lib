@@ -76,3 +76,21 @@ if(!function_exists('debug_console')){
 		echo $output;
 	}
 }
+
+if(!function_exists('debug_page')){
+	/**
+	 * Macht einen var_dumb mit <pre></pre> bzw ein print_r von daten
+	 *
+	 * @param $data
+	 * @param bool $vd
+	 */
+	function debug_page($data,$vd=false){
+		echo "<pre>";
+		if($vd){
+			var_dump($data);
+		}else{
+			print_r($data);
+		}
+		echo "</pre>";
+	}
+}

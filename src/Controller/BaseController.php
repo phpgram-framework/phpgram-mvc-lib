@@ -23,6 +23,8 @@ abstract class BaseController implements ClassInterface
 {
 	use ClassTrait, ControllerInputTrait, ControllerViewTrait;
 
+	const ALTERNATIVE_SESSION = 1;
+
 	protected function initInput()
 	{
 		if($this->input === null){
@@ -41,8 +43,13 @@ abstract class BaseController implements ClassInterface
 		}
 	}
 
-	protected function getRequestSession()
+	protected function getSession()
 	{
-		return SessionFactory::getRequestSession($this->request);
+		//Wenn eine alternative Session verwendet werden soll
+		if(getenv("ALTERNATIVE_SESSION")==self::ALTERNATIVE_SESSION) {
+			return SessionFactory::getRequestSession($this->request);
+		}
+
+		return SessionFactory::getSession();
 	}
 }

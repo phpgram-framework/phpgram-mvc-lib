@@ -16,7 +16,7 @@
 	],
 	"require": {
 		"php": "^7.1",
-		"phpgram/framework-lib":"0.*"
+		"phpgram/framework-lib":"^0.3.2"
 	},
 	"autoload": {
 		"psr-4": {
@@ -25,10 +25,5 @@
 		"files": [
 			"src/functions/helpers.php"
 		]
-	},
-	"config": {
-		"preferred-install": {
-			"*": "dist"
-		}
 	}
 }
