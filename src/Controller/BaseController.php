@@ -18,12 +18,16 @@ use Gram\Mvc\Lib\Factories\ViewFactory;
 use Gram\Middleware\Classes\ClassInterface;
 use Gram\Middleware\Classes\ClassTrait;
 use Gram\Project\Lib\Input;
+use Gram\Project\Lib\Session\SessionInterface;
 
 abstract class BaseController implements ClassInterface
 {
 	use ClassTrait, ControllerInputTrait, ControllerViewTrait;
 
 	const ALTERNATIVE_SESSION = 1;
+
+	/** @var SessionInterface */
+	protected $sessionClass;
 
 	protected function initInput()
 	{
@@ -45,11 +49,14 @@ abstract class BaseController implements ClassInterface
 
 	protected function getSession()
 	{
-		//Wenn eine alternative Session verwendet werden soll
-		if(getenv("ALTERNATIVE_SESSION")==self::ALTERNATIVE_SESSION) {
-			return SessionFactory::getRequestSession($this->request);
+		if(!isset($this->sessionClass)) {
+			if(getenv("ALTERNATIVE_SESSION")==self::ALTERNATIVE_SESSION) {
+				$this->sessionClass = SessionFactory::getRequestSession($this->request);
+			}else{
+				$this->sessionClass = SessionFactory::getSession();
+			}
 		}
 
-		return SessionFactory::getSession();
+		return $this->sessionClass;
 	}
 }
