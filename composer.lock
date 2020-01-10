@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1107be3fa7899366fd757d8187f33857",
+    "content-hash": "ff08b7f18c681f46f723f9167bbfaec2",
     "packages": [
         {
             "name": "phpgram/framework-lib",
-            "version": "0.3.0",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/grammm/php-gram/phpgram-framework-lib.git",
-                "reference": "60708a38d0edc5b256ec404e50e95eb35dd822c3"
+                "reference": "e2483a1832916af816aa53fd71e59e3daa0e2619"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/grammm%2Fphp-gram%2Fphpgram-framework-lib/repository/archive.zip?sha=60708a38d0edc5b256ec404e50e95eb35dd822c3",
-                "reference": "60708a38d0edc5b256ec404e50e95eb35dd822c3",
+                "url": "https://gitlab.com/api/v4/projects/grammm%2Fphp-gram%2Fphpgram-framework-lib/repository/archive.zip?sha=e2483a1832916af816aa53fd71e59e3daa0e2619",
+                "reference": "e2483a1832916af816aa53fd71e59e3daa0e2619",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1",
-                "phpgram/phpgram": "1.*",
+                "phpgram/phpgram": "^1.5.0",
                 "psr/simple-cache": "1.0.1"
             },
             "type": "library",
@@ -48,20 +48,20 @@
                 "php",
                 "phpgram"
             ],
-            "time": "2019-12-12T22:07:02+00:00"
+            "time": "2020-01-01T17:13:21+00:00"
         },
         {
             "name": "phpgram/phpgram",
-            "version": "1.4.1",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/grammm/php-gram/phpgram.git",
-                "reference": "ddae7d26d8b4614a6acf659f11e96a117f7e0d44"
+                "reference": "f55612ce36b766db7cc83e7f0cccaa1ee3020f95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/grammm%2Fphp-gram%2Fphpgram/repository/archive.zip?sha=ddae7d26d8b4614a6acf659f11e96a117f7e0d44",
-                "reference": "ddae7d26d8b4614a6acf659f11e96a117f7e0d44",
+                "url": "https://gitlab.com/api/v4/projects/grammm%2Fphp-gram%2Fphpgram/repository/archive.zip?sha=f55612ce36b766db7cc83e7f0cccaa1ee3020f95",
+                "reference": "f55612ce36b766db7cc83e7f0cccaa1ee3020f95",
                 "shasum": ""
             },
             "require": {
@@ -81,7 +81,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.5.x-dev"
                 }
             },
             "autoload": {
@@ -99,9 +99,11 @@
                     "email": "joernheinemann@gmx.de"
                 }
             ],
-            "description": "A very fast and lightweight Php Framework for small to enterprise applications.",
+            "description": "A very fast and lightweight Php Framework for small to enterprise applications. Also supports Asynchronous Requests",
             "keywords": [
                 "PSR 17",
+                "async",
+                "asynchronous",
                 "di container",
                 "framework",
                 "gram",
@@ -115,7 +117,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2019-12-09T22:43:16+00:00"
+            "time": "2020-01-03T21:32:44+00:00"
         },
         {
             "name": "psr/container",
