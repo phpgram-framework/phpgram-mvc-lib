@@ -16,11 +16,11 @@ namespace Gram\Mvc\Lib\Auth;
 use Gram\Mvc\Lib\Factories\SessionFactory;
 use Gram\Project\Lib\Session\SessionInterface;
 
-class AuthToken
+class CSRF_Token
 {
 	private static $gen_tocken = null;
 
-	public static function generateToken($session=true, SessionInterface $session_class = null)
+	public static function generateToken(SessionInterface $session_class = null)
 	{
 		$session_class = $session_class ?? SessionFactory::getSession();
 
@@ -32,9 +32,8 @@ class AuthToken
 		}
 
 		//setze Token in die Session um es beim form absenden zu überprüfen
-		if($session){
-			$session_class->set('token',$token);
-		}
+
+		$session_class->set('csrf_token',$token);
 
 		return $token;		//gebe Token zurück um es ins form ein zubinden
 	}
@@ -43,13 +42,13 @@ class AuthToken
 	{
 		$session_class = $session_class ?? SessionFactory::getSession();
 
-		return ($session_class->get('token') == $token);
+		return ($session_class->get('csrf_token') == $token);
 	}
 
-	public static function csrf()
+	public static function csrf(SessionInterface $session_class = null)
 	{
 		if(self::$gen_tocken === null){
-			self::$gen_tocken = self::generateToken();
+			self::$gen_tocken = self::generateToken($session_class);
 		}
 
 		return '<input type="hidden" name="csrf_token" value="'.self::$gen_tocken.'">';
