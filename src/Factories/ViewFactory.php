@@ -13,6 +13,7 @@
 
 namespace Gram\Mvc\Lib\Factories;
 
+use Gram\Project\Lib\View\LanguageInterface;
 use Gram\Project\Lib\View\StdViewInterface;
 use Gram\Project\Lib\View\View;
 
@@ -25,15 +26,26 @@ use Gram\Project\Lib\View\View;
 class ViewFactory extends Factories
 {
 	/**
+	 * @param LanguageInterface|null $language
 	 * @return StdViewInterface
 	 */
-	public static function getView()
+	public static function getView(?LanguageInterface $language = null)
 	{
-		return new View(self::$view_tpl_path);
+		return new View(self::$view_tpl_path,$language);
 	}
 
 	public static function getViewPath()
 	{
 		return self::$view_tpl_path;
+	}
+
+	public static function getLangPath()
+	{
+		return self::$lang_path;
+	}
+
+	public static function languageUsage()
+	{
+		return self::$view_language_usage ?? false;
 	}
 }

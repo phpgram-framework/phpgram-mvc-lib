@@ -16,7 +16,7 @@
 	],
 	"require": {
 		"php": "^7.1",
-		"phpgram/framework-lib":"^0.3.2"
+		"phpgram/framework-lib":"^0.4.0"
 	},
 	"autoload": {
 		"psr-4": {
