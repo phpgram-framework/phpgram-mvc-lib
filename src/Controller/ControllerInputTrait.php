@@ -26,7 +26,7 @@ trait ControllerInputTrait
 	/** @var Input */
 	protected $input;
 
-	abstract protected function initInput();
+	abstract protected function getInputClass(): Input;
 
 	/**
 	 * Gibt zu einem geg. Index (kann auch ein Array sein)
@@ -38,9 +38,7 @@ trait ControllerInputTrait
 	 */
 	protected function getInput($name,$clean = true)
 	{
-		$this->initInput();
-
-		return $this->input->get($name,$clean);
+		return $this->getInputClass()->get($name,$clean);
 	}
 
 	/**
@@ -51,8 +49,6 @@ trait ControllerInputTrait
 	 */
 	protected function gNcInput($name, $strict = true, $clean = true)
 	{
-		$this->initInput();
-
-		return $this->input->gNc($name,$strict,$clean);
+		return $this->getInputClass()->gNc($name,$strict,$clean);
 	}
 }

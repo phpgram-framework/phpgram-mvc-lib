@@ -53,7 +53,7 @@ abstract class BaseController implements ClassInterface
 	/**
 	 * @inheritdoc
 	 */
-	protected function initInput()
+	protected function getInputClass()
 	{
 		if($this->input === null){
 			$input = $this->request->getAttribute('InputClass',null);
@@ -62,6 +62,8 @@ abstract class BaseController implements ClassInterface
 				$this->input = new Input($this->request);
 			}
 		}
+
+		return $this->input;
 	}
 
 	/**
