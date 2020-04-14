@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57dfe3ae4dc573421b74d366f7d82135",
+    "content-hash": "c569c2779cf892390f60b8aa17cea7ac",
     "packages": [
         {
             "name": "phpgram/framework-lib",
-            "version": "0.5.0",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/grammm/php-gram/phpgram-framework-lib.git",
-                "reference": "275890ded870aeafd0b8f4fd06281f60bce3cd25"
+                "reference": "cf44e1f7e7f962b1d837b59a6cae9fb4340d95bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/grammm%2Fphp-gram%2Fphpgram-framework-lib/repository/archive.zip?sha=275890ded870aeafd0b8f4fd06281f60bce3cd25",
-                "reference": "275890ded870aeafd0b8f4fd06281f60bce3cd25",
+                "url": "https://gitlab.com/api/v4/projects/grammm%2Fphp-gram%2Fphpgram-framework-lib/repository/archive.zip?sha=cf44e1f7e7f962b1d837b59a6cae9fb4340d95bb",
+                "reference": "cf44e1f7e7f962b1d837b59a6cae9fb4340d95bb",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 "php",
                 "phpgram"
             ],
-            "time": "2020-03-25T12:51:33+00:00"
+            "time": "2020-04-14T13:34:51+00:00"
         },
         {
             "name": "phpgram/phpgram",
