@@ -23,6 +23,7 @@ use Gram\Project\Lib\Input;
 use Gram\Project\Lib\Session\SessionInterface;
 use Gram\Project\Lib\View\Language;
 use Gram\Project\Lib\View\LanguageInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Class BaseController
@@ -51,6 +52,25 @@ abstract class BaseController implements ClassInterface
 	protected $cookie;
 
 	/**
+	 * Hole die Session Class
+	 *
+	 * Jenachdem was eingestellt wurde
+	 *
+	 * @param ServerRequestInterface $request
+	 * @return SessionInterface
+	 */
+	public static function getSessionClass(ServerRequestInterface $request)
+	{
+		if(getenv("ALTERNATIVE_SESSION") == self::ALTERNATIVE_SESSION) {
+			//Session aus dem Request
+			return SessionFactory::getRequestSession($request);
+		}else{
+			//Normale Php Session
+			return SessionFactory::getSession();
+		}
+	}
+
+	/**
 	 * @inheritdoc
 	 */
 	protected function getInputClass()
@@ -71,7 +91,7 @@ abstract class BaseController implements ClassInterface
 	 */
 	protected function initView()
 	{
-		if($this->view=== null){
+		if($this->view === null){
 			//nur wenn Language genutzt werden soll
 			if(ViewFactory::languageUsage()) {
 				$lang = $this->getLanguage();
@@ -89,11 +109,7 @@ abstract class BaseController implements ClassInterface
 	protected function getSession()
 	{
 		if(!isset($this->sessionClass)) {
-			if(getenv("ALTERNATIVE_SESSION")==self::ALTERNATIVE_SESSION) {
-				$this->sessionClass = SessionFactory::getRequestSession($this->request);
-			}else{
-				$this->sessionClass = SessionFactory::getSession();
-			}
+			$this->sessionClass = self::getSessionClass($this->request);
 		}
 
 		return $this->sessionClass;
