@@ -16,7 +16,7 @@ namespace Gram\Mvc\Lib\Factories;
 use Gram\Project\Lib\DB\DBInterface;
 use Gram\Project\Lib\DB\StdDB;
 
-class DB extends Factories
+class DB
 {
 	/** @var DBInterface */
 	private static $_instance=null;
@@ -29,9 +29,10 @@ class DB extends Factories
 	{
 		if(!isset(self::$_instance) || $new){
 			self::$_instance = new StdDB(
+				getenv("DB_DRIVER"),
 				getenv("DB_HOST"),
+				getenv("DB_PORT"),
 				getenv("DB_NAME"),
-				getenv("DB_CHARSET"),
 				getenv("DB_USER"),
 				getenv("DB_USER_PW")
 			);
